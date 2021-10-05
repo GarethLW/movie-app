@@ -38,16 +38,19 @@ const App = () => {
   };
 
   const addFavouriteMovie = (movie) => {
-    const newFavouriteList = [...favourites, movie];
+    var newFavouriteList = [movie];
+    if (favourites) newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   }
 
   const RemoveFavouriteMovie = (movie) => {
-    const newFavouriteList = favourites.filter((favourite) => favourite.imdbID !== movie.imdbID);
+    if (favourites) {
+      const newFavouriteList = favourites.filter((favourite) => favourite.imdbID !== movie.imdbID);
 
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+      setFavourites(newFavouriteList);
+      saveToLocalStorage(newFavouriteList);
+    }
   }
 
   return (
