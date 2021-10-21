@@ -25,20 +25,25 @@ const MovieList = (props) => {
                                     var tempID = myId+'desc-'+movie.imdbID;
                                     var tempClassList = document.getElementById(tempID).classList;
                                  
-                                    // if there is an actively selected movie
+                                    // if there is an actively selected movie then hide it before opening the one we clicked
                                     if (activeMovie) {
                                         document.getElementById(activeMovie).classList.remove("cardText");
                                         document.getElementById(activeMovie).classList.add("cardTextHide");
+                                        tempClassList.remove("selectedDesc");
                                     }
                                     // if this movie is the one we just clicked on, then unselect it
-                                    if (activeMovie === tempID) {
+                                    if (tempClassList.contains("selectedDesc") || activeMovie === tempID) {
                                         tempClassList.remove("cardText");
                                         tempClassList.add("cardTextHide");
+                                        tempClassList.remove("selectedDesc");
                                         activeMovie = null;
+                                        return;
                                     }
+                                    // else we selected a movie, so show its description
                                     else {
                                         tempClassList.add("cardText");
                                         tempClassList.remove("cardTextHide");
+                                        tempClassList.add("selectedDesc");
 
                                         activeMovie = tempID;
                                     }

@@ -54,8 +54,12 @@ const App = () => {
     var newFavouriteList = [movie];
 
     // if movie is not already in the list
-    if (!favourites.some(e => e.imdbID === movie.imdbID)) {
-      if (favourites) newFavouriteList = [...favourites, movie];
+    if (favourites && !favourites.some(e => e.imdbID === movie.imdbID)) {
+      newFavouriteList = [...favourites, movie];
+      setFavourites(newFavouriteList);
+      saveToLocalStorage(newFavouriteList);
+    }
+    else if (!favourites) {
       setFavourites(newFavouriteList);
       saveToLocalStorage(newFavouriteList);
     }
