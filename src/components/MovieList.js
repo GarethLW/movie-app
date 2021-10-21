@@ -29,21 +29,17 @@ const MovieList = (props) => {
                                     if (activeMovie) {
                                         document.getElementById(activeMovie).classList.remove("cardText");
                                         document.getElementById(activeMovie).classList.add("cardTextHide");
-                                        tempClassList.remove("selectedDesc");
                                     }
                                     // if this movie is the one we just clicked on, then unselect it
-                                    if (tempClassList.contains("selectedDesc") || activeMovie === tempID) {
+                                    if (activeMovie === tempID) {
                                         tempClassList.remove("cardText");
                                         tempClassList.add("cardTextHide");
-                                        tempClassList.remove("selectedDesc");
                                         activeMovie = null;
-                                        return;
                                     }
                                     // else we selected a movie, so show its description
                                     else {
                                         tempClassList.add("cardText");
                                         tempClassList.remove("cardTextHide");
-                                        tempClassList.add("selectedDesc");
 
                                         activeMovie = tempID;
                                     }
