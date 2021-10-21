@@ -3,14 +3,40 @@ body {
   color: white;
 }
 
+.cardText {
+  margin-right: 50px;
+  margin-left: 10px;
+  width: 300px;
+  visibility: visible;
+  transition: width 0.4s ease-in-out;
+}
+
+.cardTextHide {
+  width: 0px;
+  visibility: hidden;
+  transition: width 0.4s ease-in-out;
+}
+
+.searchB{
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  width: 100%;
+  float: right;
+}
+.searchB:focus {
+  width: 100%;
+}
+
 .movie-app > .row {
-  overflow-x: auto;
+  overflow-x: hidden;
   flex-wrap: nowrap;
 }
 
 .image-container{
+  max-width: fit-content;
   position: relative;
-  transition: transform 0.2s;
+  transition: transform 0.2s ease;
+  transition: padding 0.2s ease-in-out;
 }
 
 .image-container:hover {
@@ -18,20 +44,63 @@ body {
   transform: scale(1.1);
 }
 
-.image-container:hover .overlay {
+.image-container:hover .overlay  {
   opacity: 1;
 }
 
+.overlay:hover {
+  background: rgba(7, 7, 7, 0.897);
+  box-shadow: inset 0 0 5px rgb(255, 255, 255);
+  transition: transform 0s;
+}
 .overlay {
   position: absolute;
-  background: rgba(0,0,0,0.8);
+  background: rgba(7, 7, 7, 0.473);
   width: 100%;
   transition: 0.5s ease;
   opacity: 0;
   bottom: 0;
   font-size: 20px;
   padding: 20px;
+  margin-bottom: -1px;
   text-align: center;
    
 }
 
+.scroll {
+  transition: 0.2s ease;
+  position: absolute;
+  right: 0;
+  height: 512px;
+  background: rgba(0,0,0);
+  opacity: 0.5;
+  line-height: 512px;
+}
+.scroll:hover {
+  opacity: 0.8;
+  transition: 0.2s ease;
+}
+
+.scrollL {
+  transition: 0.2s ease;
+  position: absolute;
+  height: 512px;
+  background: rgba(0,0,0);
+  opacity: 0.5;
+  line-height: 512px;
+}
+.scrollL:hover {
+  opacity: 0.8;
+  transition: 0.2s ease;
+}
+
+.movieList {
+  height: 512px;
+}
+.slidingMenu{
+  overflow-y: hidden;
+}
+
+.arrow {
+  width: 100%;
+}

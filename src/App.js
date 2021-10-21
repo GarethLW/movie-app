@@ -23,6 +23,15 @@ const App = () => {
 
   }
 
+  const getMovieDetailsRequest = async (imdbID) => {
+    const url = `http://www.omdbapi.com/?i=${imdbID}&apikey=c3f8e502`;
+    const response = await fetch(url);
+    const responseJson = await response.json();
+
+    return responseJson
+
+  }
+
   useEffect(() => {
     getMovieRequest(searchValue);
   }, [searchValue]);
@@ -37,11 +46,19 @@ const App = () => {
     localStorage.setItem('react-movie-app-favourites', JSON.stringify(items))
   };
 
+  const movieClick = async(movie) => {
+    return await getMovieDetailsRequest(movie);
+  }
+
   const addFavouriteMovie = (movie) => {
     var newFavouriteList = [movie];
-    if (favourites) newFavouriteList = [...favourites, movie];
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+
+    // if movie is not already in the list
+    if (!favourites.some(e => e.imdbID === movie.imdbID)) {
+      if (favourites) newFavouriteList = [...favourites, movie];
+      setFavourites(newFavouriteList);
+      saveToLocalStorage(newFavouriteList);
+    }
   }
 
   const RemoveFavouriteMovie = (movie) => {
@@ -56,17 +73,19 @@ const App = () => {
   return (
     <div className='container-fluid movie-app'>
       <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='Movies' />
+        <MovieListHeading heading='Movies and Shows' />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
-      <div className='row'>
-        <MovieList movies={movies} handleFavouritesClick={addFavouriteMovie} favouriteComponent={AddFavourites} />
+
+      <div id='movies' className='slidingMenu row'>
+        <MovieList id='movies' movies={movies} handleMovieClick={movieClick} handleFavouritesClick={addFavouriteMovie} favouriteComponent={AddFavourites} />
       </div>
+
       <div className='row d-flex align-items-center mt-4 mb-4'>
         <MovieListHeading heading='Favourites' />
       </div>
-      <div className='row'>
-        <MovieList movies={favourites} handleFavouritesClick={RemoveFavouriteMovie} favouriteComponent={RemoveFavourites} />
+      <div id='favs' className='row'>
+        <MovieList id='favs' movies={favourites} handleMovieClick={movieClick} handleFavouritesClick={RemoveFavouriteMovie} favouriteComponent={RemoveFavourites} />
       </div>
     </div>
   );
