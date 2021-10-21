@@ -24,7 +24,7 @@ const App = () => {
   }
 
   const getMovieDetailsRequest = async (imdbID) => {
-    const url = `http://www.omdbapi.com/?i=${imdbID}&apikey=c3f8e502`;
+    const url = `https://www.omdbapi.com/?i=${imdbID}&apikey=c3f8e502`;
     const response = await fetch(url);
     const responseJson = await response.json();
 

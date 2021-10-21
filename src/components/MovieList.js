@@ -61,7 +61,7 @@ const MovieList = (props) => {
                             } src={movie.Poster} alt='movie'></img>
 
                             <div id={myId+'desc-'+movie.imdbID} className="col cardTextHide">
-                                Text is here
+                                Description Loading...
                             </div>
                             
                             <div onClick={() => props.handleFavouritesClick(movie)} className="overlay addFav align-items-center">
