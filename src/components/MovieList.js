@@ -4,13 +4,13 @@ import React from 'react';
 // reset last selected id to default
 // set this id as currently selected
 
-
+var activeMovie = null;
 
 const MovieList = (props) => {
     const FavouriteComponent = props.favouriteComponent;
     const myId = props.id;
 
-    var activeMovie = null;
+    
 
 
     if (props.movies) {
@@ -66,6 +66,7 @@ const MovieList = (props) => {
                             </div>
                             
                             <div onClick={() => props.handleFavouritesClick(movie)} className="overlay addFav align-items-center">
+                                {console.log("movies is"+activeMovie)}
                                 <FavouriteComponent />
                             </div>
                         </div>
