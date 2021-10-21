@@ -88,7 +88,7 @@ const App = () => {
       <div className='row d-flex align-items-center mt-4 mb-4'>
         <MovieListHeading heading='Favourites' />
       </div>
-      <div id='favs' className='row'>
+      <div id='favs' className='slidingMenu row'>
         <MovieList id='favs' movies={favourites} handleMovieClick={movieClick} handleFavouritesClick={RemoveFavouriteMovie} favouriteComponent={RemoveFavourites} />
       </div>
     </div>
